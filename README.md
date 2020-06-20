@@ -5,7 +5,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view dashboard.
 
 ##### You can customize window frame, simply override .env.example file variables
 
-![alt text](https://prnt.sc/t3fgmy)
+![alt text](https://github.com/dmitrychurkin/dc-metric-node/blob/master/screens/Screenshot_1.png?raw=true)
 
 Install the dependencies, build app and start the server.
 
