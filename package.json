@@ -1,0 +1,62 @@
+{
+  "name": "dc-metric-nodejs",
+  "version": "1.0.0",
+  "description": "task 2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmitrychurkin"
+  },
+  "scripts": {
+    "build": "npm run build-ts && npm run lint",
+    "build-ts": "tsc",
+    "debug": "npm run build && npm run watch-debug",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "serve": "node dist/server.js",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "start": "npm run serve",
+    "test": "jest --forceExit --coverage --verbose",
+    "watch": "npm run clean && npm run build-ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-debug": "npm run clean && npm run build-ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "watch-node": "nodemon dist/server.js",
+    "watch-test": "npm run test -- --watchAll",
+    "watch-ts": "tsc -w",
+    "clean": "rimraf ./dist"
+  },
+  "keywords": [],
+  "author": "Dmitry Churkin",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1",
+    "lusca": "^1.6.1",
+    "moment": "^2.27.0",
+    "pug": "^3.0.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/concurrently": "^5.2.1",
+    "@types/errorhandler": "^1.5.0",
+    "@types/eslint": "^7.2.0",
+    "@types/express": "^4.17.6",
+    "@types/jest": "^26.0.0",
+    "@types/lusca": "^1.6.2",
+    "@types/node": "^14.0.13",
+    "@types/pug": "^2.0.4",
+    "@types/supertest": "^2.0.9",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "chai": "^4.2.0",
+    "concurrently": "^5.2.0",
+    "eslint": "^7.3.0",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
