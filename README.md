@@ -11,6 +11,7 @@ Install the dependencies, build app and start the server.
 
 ```sh
 $ git clone https://github.com/dmitrychurkin/dc-metric-node.git
+$ cd dc-metric-node
 $ npm install
 $ npm run build && npm run serve
 ```
