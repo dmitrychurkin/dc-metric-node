@@ -4,8 +4,9 @@
   "description": "task 2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmitrychurkin"
+    "url": "https://github.com/dmitrychurkin/dc-metric-node"
   },
+  "main": "dist/server.js",
   "scripts": {
     "build": "npm run build-ts && npm run lint",
     "build-ts": "tsc",

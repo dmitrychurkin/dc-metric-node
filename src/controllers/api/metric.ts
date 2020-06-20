@@ -1,3 +1,5 @@
+import moment, { unitOfTime } from "moment";
+
 import map from "../../util/in-memory-store";
 
 import { MetricAddRequest, MetricSumRequest } from "../../types/request";
@@ -12,17 +14,23 @@ import { IMetricStore } from "../../types/metric";
  * @param Response res
  *  {}
  */
-export const metricAdd = (req: MetricAddRequest, res: MetricAddResponse) => {
+export const metricAdd = (
+  req: MetricAddRequest,
+  res: MetricAddResponse
+): void => {
   const { key } = req.params;
-  const collection: Array<IMetricStore> = map.get(key) ?? [];
-
   const { value } = req.body;
-  if (value > 0) {
+
+  if (typeof value === "number" && value > 0) {
+    const collection: Array<IMetricStore> = map.get(key) ?? [];
     collection.push({ timestamp: Date.now(), value: Math.round(value) });
     map.set(key, collection);
+
+    res.json({});
+    return;
   }
 
-  res.json({});
+  res.sendStatus(400);
 };
 
 /** GET metric sum
@@ -32,9 +40,26 @@ export const metricAdd = (req: MetricAddRequest, res: MetricAddResponse) => {
  *   "value": number
  *  }
  */
-export const metricSum = (req: MetricSumRequest, res: MetricSumResponse) => {
+export const metricSum = (
+  req: MetricSumRequest,
+  res: MetricSumResponse
+): void => {
   const { key } = req.params;
-  const collection: Array<IMetricStore> = map.get(key) ?? [];
+  const timeUnit = (process.env.TIME_UNIT || "hours") as unitOfTime.Diff;
+  const timeWindow = process.env.TIME_WINDOW || 1;
+  let value = 0;
 
-  // res.json({ metricSum: true }); TODO: implemenation pending
+  const collection = (map.get(key) ?? []).filter((record) => {
+    if (
+      moment(Date.now()).diff(moment(record.timestamp), timeUnit) > timeWindow
+    ) {
+      return false;
+    }
+    value += record.value;
+    return true;
+  });
+
+  map.set(key, collection);
+
+  res.json({ value });
 };
