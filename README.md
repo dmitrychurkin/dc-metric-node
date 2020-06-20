@@ -20,3 +20,7 @@ $ npm run build && npm run serve
 | ---- | --------------------- | ----------------- | --------- | ----------------- |
 | POST | /api/metric/{key}     | { value: number } | 200 / 400 | {}                |
 | GET  | /api/metric/{key}/sum |                   | 200       | { value: number } |
+
+#### Demo:
+
+[https://dc-metric-node.herokuapp.com](https://dc-metric-node.herokuapp.com)
