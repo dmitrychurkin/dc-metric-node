@@ -4,8 +4,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import lusca from "lusca";
 
+import connectDb from "./connection";
+
 import webRoutes from "./routes/web";
 import apiRoutes from "./routes/api";
+
+connectDb();
 
 const app = express();
 

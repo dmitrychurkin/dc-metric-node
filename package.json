@@ -33,6 +33,7 @@
     "express": "^4.17.1",
     "lusca": "^1.6.1",
     "moment": "^2.27.0",
+    "mongoose": "^5.9.22",
     "pug": "^3.0.0",
     "winston": "^3.2.1"
   },
@@ -44,6 +45,7 @@
     "@types/express": "^4.17.6",
     "@types/jest": "^26.0.0",
     "@types/lusca": "^1.6.2",
+    "@types/mongoose": "^5.7.30",
     "@types/node": "^14.0.13",
     "@types/pug": "^2.0.4",
     "@types/supertest": "^2.0.9",
